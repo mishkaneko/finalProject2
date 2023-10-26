@@ -1,0 +1,37 @@
+buildscript {
+    ext {
+        springBootVersion = '3.1.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id "org.flywaydb.flyway" version "9.8.1"
+}
+
+group 'io.tecky'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'com.h2database:h2'
+    implementation group: 'com.vividsolutions', name: 'jts', version: '1.13'
+    implementation 'com.google.maps:google-maps-services:2.2.0'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+//    implementation 'org.slf4j:slf4j-simple:1.7.25'
+//    compile ('io.socket:socket.io-server:4.0.1')
+    implementation group: 'com.corundumstudio.socketio', name: 'netty-socketio', version: '1.7.17'
+    implementation 'com.auth0:java-jwt:4.4.0'
+
+}

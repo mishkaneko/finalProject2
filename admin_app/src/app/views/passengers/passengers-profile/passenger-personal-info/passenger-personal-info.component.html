@@ -1,0 +1,42 @@
+<c-card *ngIf="formData">
+    <c-card-body>
+        <form>
+            <c-row>
+                <c-col>
+                    <div [cFormFloating]=" true" class="mb-3">
+                        <input cFormControl [(ngModel)]="formData.name" name="passengerName" autocomplete="off" />
+                        <label cLabel for="passengerName">Full Name</label>
+
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating>
+                        <select cSelect id="floatingSelect" [(ngModel)]="formData.gender" name="gender">
+                            <option [value]="'male'">Male</option>
+                            <option [value]="'female'">Female</option>
+                        </select>
+                        <label cLabel for="floatingSelect">Gender</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="phone" autocomplete="off" [(ngModel)]="formData.phone" />
+                        <label cLabel for="phone">Phone Number</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="email" autocomplete="off" type="email" [(ngModel)]="formData.email" />
+                        <label cLabel for="email">Email Address</label>
+                    </div>
+                </c-col></c-row>
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;"><button cButton color="dark"
+                        (click)="updatePassengersPersonalInfo()"><fa-icon [icon]="faFloppyDisk"></fa-icon><span
+                            class="btn-icon">Save</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>
+<app-save-toast></app-save-toast>

@@ -1,0 +1,15 @@
+POST /rides/plan
+GET /rides/:userId
+POST /rides/:rideId/reject
+POST /rides/:rideId/cancel
+POST /rides/match/rejection
+POST /rides/match/cancellation
+GET /driver/job
+GET /driver/additionalCharges
+POST /driver/job
+POST /driver/job/guide/start
+POST /driver/job/guide/waypointA
+POST /driver/job/guide/waypointB
+POST /driver/job/guide/completed
+POST /rides/cancellation
+GET /rides/match

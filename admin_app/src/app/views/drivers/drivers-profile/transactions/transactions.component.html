@@ -1,0 +1,36 @@
+<table [striped]="true" cTable color="dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Match ID</th>
+            <th scope="col">Passenger ID</th>
+            <th scope="col">Amount (HK$)</th>
+            <th scope="col">Transaction Time</th>
+            <th scope="col">Stripe Charge ID</th>
+            <th scope="col">Stripe Success Time</th>
+            <th scope="col">Remark</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tableData; let i = index">
+            <th scope="row">
+                {{ i + 1 }}</th>
+            <td>{{
+                data.transaction_id }}</td>
+            <td>{{ data.match_id }}</td>
+            <td>{{ data.passenger_id }}</td>
+            <td>{{ data.amount | number: '2.2' }}</td>
+            <td>{{ data.transaction_time | date: 'yyyy-MM-dd HH:mm'}}</td>
+            <td>{{ data.stripe_charge_id }}</td>
+            <td>{{ data.stripe_success_time !== null ? (data.stripe_success_time | date: 'yyyy-MM-dd HH:mm') : '-' }}
+            </td>
+            <td>{{ data.remark.length >= 1 ? data.remark : '-'}}</td>
+            <td><button cButton color="light" (click)="navigateToPayout(data.transaction_id)">{{ data.payout }}</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<router-outlet></router-outlet>

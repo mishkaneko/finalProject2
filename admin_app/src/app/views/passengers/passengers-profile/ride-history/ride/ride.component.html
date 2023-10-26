@@ -1,0 +1,148 @@
+<c-card *ngIf="formData">
+    <c-card-body>
+        <form>
+            <label class="subtitle lead">Ride Details</label>
+            <c-row>
+                <c-col xs="4">
+                    <div [cFormFloating]="true" class="mb-3">
+                        <input cFormControl id="rideId" placeholder="..." autocomplete="off" [value]="formData.id"
+                            disabled />
+                        <label cLabel for="rideId">Ride ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="3">
+                    <div [cFormFloating]="true" class="mb-3">
+                        <input cFormControl id="matchID" placeholder="..." autocomplete="off"
+                            [value]="formData.match_id" disabled />
+                        <label cLabel for="matchID">Match ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="1">
+                    <div><button cButton color="dark" style="--cui-btn-font-size: 1.8rem;" (click)="navigateToMatch()">
+                            <fa-icon [icon]="faCircleInfo"></fa-icon>
+                        </button></div>
+                </c-col>
+                <c-col xs="4">
+                    <div cFormFloating>
+                        <select cSelect id="floatingSelect" [(ngModel)]="formData.status" name="matchStatus">
+                            <option [value]="'alone'">Alone</option>
+                            <option [value]="'available'">Available</option>
+                            <option [value]="'matching'">Matching</option>
+                            <option [value]="'matched'">Matched</option>
+                            <option [value]="'canceled'">Canceled</option>
+                        </select>
+                        <label cLabel for="floatingSelect">Match Status</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="startName" placeholder="..." autocomplete="off"
+                            [value]="formData.start_location_name" disabled />
+                        <label cLabel for="startName">Starting Location</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="endName" placeholder="..." autocomplete="off"
+                            [value]="formData.end_location_name" disabled />
+                        <label cLabel for="endName">Destination</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="arriveByTime" placeholder="..." autocomplete="off"
+                            [value]="formData.arrive_by_time | date: 'yyyy-MM-dd HH-mm'" disabled />
+                        <label cLabel for="arriveByTime">Arrival Time</label>
+                    </div>
+                </c-col>
+            </c-row><label class="subtitle lead">Matched Ride Details</label><c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="distance" placeholder="..." autocomplete="off" type="email"
+                            [value]="formData.distance" disabled />
+                        <label cLabel for="distance">Distance (km)</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="pickupTime" placeholder="..." autocomplete="off" type="email"
+                            [value]="formData.pickup_time | date: 'yyyy-MM-dd HH-mm'" disabled />
+                        <label cLabel for="pickupTime">Pickup Time</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="dropoffTime" placeholder="..." autocomplete="off" type="email"
+                            [value]="formData.dropoff_time | date: 'yyyy-MM-dd HH-mm'" disabled />
+                        <label cLabel for="dropoffTime">Dropoff Time</label>
+                    </div>
+                </c-col></c-row>
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;"><button cButton color="dark"
+                        (click)="updatePassengerRideDetails(); false"><fa-icon [icon]="faFloppyDisk"></fa-icon><span
+                            class="btn-icon">Save</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>
+
+<c-card class="ride-card" *ngIf="formData">
+    <c-card-header>Transaction Details</c-card-header>
+    <c-card-body>
+        <label class="subtitle lead">Transaction Record</label>
+        <table [striped]="true" cTable color="dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Amount (HK$)</th>
+                    <th scope="col">Transaction Time</th>
+                    <th scope="col">Cancellation Time</th>
+                    <th scope="col">Stripe Charge ID</th>
+                    <th scope="col">Stripe Time</th>
+                    <th scope="col">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of this.tableData; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{row.id}}</td>
+                    <td>{{row.amount | number: '2.2'}}</td>
+                    <td>{{row.transaction_time | date: 'yyyy-MM-dd HH-mm'}}</td>
+                    <td>{{row.passenger_cancel_time ? (row.passenger_cancel_time | date: 'yyyy-MM-dd HH-mm') :
+                        '-'}}</td>
+                    <td>{{row.stripe_charge_id ? row.stripe_charge_id : '-'}}</td>
+                    <td>{{row.stripe_success_time ? (row.stripe_success_time | date: 'yyyy-MM-dd HH-mm') : '-'}}</td>
+                    <td>{{row.remark}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form>
+            <label class="subtitle lead">Add Refund Record</label>
+            <c-row>
+                <c-col xs="3">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="amount" placeholder="..." autocomplete="off"
+                            [(ngModel)]="formData.amount" />
+                        <label cLabel for="amount">Amount (HK$)</label>
+                    </div>
+                </c-col>
+                <c-col xs="9">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="refundRemark" placeholder="..." autocomplete="off"
+                            [(ngModel)]="formData.refundRemark" />
+                        <label cLabel for="refundRemark">Remarks</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;"><button cButton color="dark"
+                        (click)="addRefundRecord(); refreshPage()"><fa-icon [icon]="faPaperPlane"></fa-icon><span
+                            class="btn-icon">Submit</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body></c-card>
+<app-save-toast></app-save-toast>

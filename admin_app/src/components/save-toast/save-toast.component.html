@@ -1,0 +1,12 @@
+<c-toaster [placement]="position" class="p-3" position="fixed">
+    <c-toast color="secondary" (timer)="onTimerChange($event)" (visibleChange)="onVisibleChange($event)"
+        [visible]="visible">
+        <c-toast-header>
+            <fa-icon [icon]="faCircleCheck"></fa-icon>
+            <span class="save-toast-header-text">SUCCESS</span>
+        </c-toast-header>
+        <c-toast-body>
+            <p class='save-toast-text'>Information has been saved</p>
+        </c-toast-body>
+    </c-toast>
+</c-toaster>

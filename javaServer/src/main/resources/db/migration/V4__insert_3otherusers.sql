@@ -1,0 +1,62 @@
+--INSERT INTO "user" (email, password_hash) VALUES ('user02@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user2');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.316037', '114.170322', 'Mongkok Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.373373', '114.107598', 'Chai Wan Kok Street');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (2, 'available', 3, 4, '2023-10-18 19:55:00+08:00');
+--
+----3
+--INSERT INTO "user" (email, password_hash) VALUES ('user03@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user3');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.288426' ,'114.215451', 'Quarry Bay Park');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.281247', '114.128883', 'Kennedy Town Station');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (3, 'available',5, 6, '2023-10-18 19:30:00+08:00');
+--
+----4
+--INSERT INTO "user" (email, password_hash) VALUES ('user04@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user4');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.291271' ,'114.200495', 'North Point Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.277549', '114.173153', 'Wan Chai Station');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (4, 'available', 7, 8, '2023-10-18 20:13:00+08:00');
+--
+----5
+--INSERT INTO "user" (email, password_hash) VALUES ('user05@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user5');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.492051' ,'114.139221', 'Fanling Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.501257', '114.127945', 'Sheung Shui Station');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (5, 'available',9, 10, '2023-10-18 20:13:00+08:00');
+--
+----6
+--INSERT INTO "user" (email, password_hash) VALUES ('user06@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user6');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.492051' ,'114.139221', 'Fanling Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.501257', '114.127945', 'Sheung Shui Station');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (6, 'available',9, 10, '2023-10-18 20:13:00+08:00');
+--
+--
+----7
+--INSERT INTO "user" (email, password_hash) VALUES ('user07@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user7');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.492051' ,'114.139221', 'Fanling Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.501257', '114.127945', 'Sheung Shui Station');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (7, 'available',9, 10, '2023-10-18 20:13:00+08:00');
+--
+----8
+--INSERT INTO "user" (email, password_hash) VALUES ('user08@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user8');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.492051' ,'114.139221', 'Fanling Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.501257', '114.127945', 'Sheung Shui Station');
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (8, 'available',9, 10, '2023-10-18 20:13:00+08:00');

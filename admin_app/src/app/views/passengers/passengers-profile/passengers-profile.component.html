@@ -1,0 +1,16 @@
+<div class="outer-container">
+    <div class="name-container">
+        <p class='subtitle lead'>Passenger: <span class="name-bold">{{this.passengerName}}</span></p>
+    </div>
+</div>
+
+<c-nav class="flex-column flex-sm-row" role="navigation" variant="tabs">
+    <a [routerLink]="['/passengers', id, 'personal-information']" [active]="personalInfoActive" cNavLink
+        (click)="activateLink('personal-information')"><fa-icon [icon]="faUser"></fa-icon><span
+            class="btn-icon">Personal Information</span></a>
+    <a [routerLink]="['/passengers', id, 'ride-history']" [active]="rideHistoryActive" cNavLink
+        (click)="activateLink('ride-history')"><fa-icon [icon]="faClipboard"></fa-icon><span class="btn-icon">Ride
+            History</span></a>
+</c-nav>
+
+<router-outlet></router-outlet>

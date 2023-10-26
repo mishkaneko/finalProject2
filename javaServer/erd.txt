@@ -1,0 +1,176 @@
+# Visualize on https://erd.surge.sh
+# or https://quick-erd.surge.sh
+#
+# Relationship Types
+#  -    - one to one
+#  -<   - one to many
+#  >-   - many to one
+#  >-<  - many to many
+#  -0   - one to zero or one
+#  0-   - zero or one to one
+#  0-0  - zero or one to zero or one
+#  -0<  - one to zero or many
+#  >0-  - zero or many to one
+#
+////////////////////////////////////
+
+
+user
+----
+id integer PK
+email unique string
+password_hash char(60)
+reset_token string NULL
+image string NULL
+
+
+customer
+--------
+id integer PK FK >0- user.id
+gender string
+phone string
+name string
+position String NULL
+position_update_time timestamp NULL
+last_login_time timestamp NULL
+
+
+driver
+------
+id integer PK FK >0- user.id
+hkid string
+driving_license_no string
+taxi_driver_identity_plate string
+vehicle_license string
+license_plate_no string
+is_available boolean
+
+
+
+ride
+----
+id integer PK
+passenger_id integer FK >0- customer.id
+match_id integer NULL FK >- match.id
+start_location_id fk >- location.id
+end_location_id fk >- location.id
+arrive_by_time timestamp
+transaction_id integer NULL FK -0< transaction.id
+saved_fare real NULL
+distance integer NULL
+pickup_time timestamp NULL
+dropoff_time timestamp NULL
+status enum(available,alone,matching,matched,canceled)
+
+match
+-----
+id integer PK
+driver_id integer NULL FK >0- driver.id
+segment_1_id fk >- segment.id
+segment_2_id fk >- segment.id
+segment_3_id fk >- segment.id
+total_distance_in_meters real
+estimated_duration_in_seconds real
+estimated_fare real
+match_time timestamp
+# match_status enum(pending,accepted)
+start_time timestamp NULL
+end_time timestamp NULL
+confirm_time timestamp NULL
+reject_time timestamp NULL
+cancel_time timestamp NULL
+
+segment
+-------
+id
+start_location_id fk >- location.id
+end_location_id fk >- location.id
+distance_in_meters real
+duration_in_seconds real
+
+rating
+------
+id integer PK
+match_id integer FK - match.id
+from_user_id integer FK >0- customer.id
+to_user_id integer FK >0- customer.id
+score integer
+comment text NULL
+
+
+additional_charge
+-----------------
+id integer PK
+ride_id integer FK >0- ride.id
+transaction_id integer FK >0- transaction.id
+name enum('luggage','animal','tunnel')
+amount integer
+
+
+transaction
+-----------
+id integer PK
+passenger_id integer FK >0- customer.id
+amount real
+transaction_time timestamp NULL
+passenger_cancel_time timestamp NULL
+stripe_charge_id string NULL
+stripe_success_time timestamp NULL
+remark text NULL
+
+
+admin
+-----
+id integer PK FK >0- user.id
+
+
+driver_payout
+-------------
+id integer PK
+amount real
+payout_time timestamp
+remark text NULL
+driver_id integer FK >0- driver.id
+transaction_id integer NULL FK --- transaction.id
+admin_id integer FK >-- admin.id
+
+
+location
+-------------
+id
+lat real
+lng real
+name text
+
+match_ride
+-----------------
+id integer PK
+match_id FK >0- match.id
+ride1_id FK >0- ride.id
+ride2_id FK >0- ride.id
+status enum(wait_both,wait_1,wait_2,confirmed,canceled)
+
+
+
+
+# zoom: 0.478
+# view: (258, 1253)
+
+
+
+
+
+
+# user (497, -740, #612e20)
+# customer (909, -663, #2b4c2a)
+# driver (88, -656, #063e12)
+# ride (187, -1129, #24600e)
+# match (893, -1089)
+# segment (980, -1228)
+# rating (1401, -949)
+# additional_charge (-86, -1026)
+# transaction (-126, -872)
+# admin (152, -368)
+# driver_payout (-75, -289)
+# location (642, -1128)
+

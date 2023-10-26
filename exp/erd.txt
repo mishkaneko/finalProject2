@@ -1,0 +1,11 @@
+id int
+passenger_id int
+match_id int
+match_status String
+start_point List<Float>
+end_point List<Float>
+arrive_by_time Date
+transaction_id int
+distance int
+pickup_time Date
+dropoff_time Date

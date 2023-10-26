@@ -1,0 +1,13 @@
+--INSERT INTO "user" (email, password_hash) VALUES ('user01@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "customer" (gender, phone, name) VALUES ('male', '12345678', 'user1');
+--
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.311598', '114.226512', 'Kwun Tong Station');
+--INSERT INTO "location" (lat, lng, name) VALUES ('22.368037', '114.110306', 'Tsuen Wan West station');
+--
+--INSERT INTO "ride" (passenger_id, status, start_location_id, end_location_id, arrive_by_time) VALUES (1, 'available', 1, 2,'2023-10-18 19:35:00+08:00');
+--
+--
+--
+--
+----

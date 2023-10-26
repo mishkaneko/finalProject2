@@ -1,0 +1,31 @@
+<table [striped]="true" cTable color="dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ride ID</th>
+            <th scope="col">Match ID</th>
+            <th scope="col">Match Status</th>
+            <th scope="col">Arrive By Time</th>
+            <th scope="col">Transaction Initiated</th>
+            <th scope="col">Transaction Cancelled</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tableData; let i = index">
+            <th scope="row">
+                {{ i + 1 }}</th>
+            <td><button cButton color="light" (click)="navigateToRide(data.id)">{{ data.id }}</button>
+            </td>
+            <td>{{ data.match_id }}</td>
+            <td>{{ data.status | titlecase }}</td>
+            <td>{{ data.arrive_by_time !== null ? (data.arrive_by_time | date: 'yyyy-MM-dd HH:mm') : '-' }}</td>
+            <td>{{ data.transaction_time !== null ? (data.transaction_time | date: 'yyyy-MM-dd HH:mm') : '-' }}</td>
+            <td>{{data.passenger_cancel_time !== null ? (data.passenger_cancel_time| date: 'yyyy-MM-dd HH:mm') : '-' }}
+            </td>
+
+
+        </tr>
+    </tbody>
+</table>
+
+<router-outlet></router-outlet>

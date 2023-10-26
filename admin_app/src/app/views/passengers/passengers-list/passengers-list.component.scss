@@ -1,0 +1,11 @@
+.clickable-cell:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+
+.table-title-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}

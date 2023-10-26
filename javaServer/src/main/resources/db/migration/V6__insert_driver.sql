@@ -1,0 +1,7 @@
+--INSERT INTO "user" (email, password_hash) VALUES ('driver01@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "driver" (id, hkid, driving_license_no, taxi_driver_identity_plate, vehicle_license, license_plate_no, is_available) VALUES (6, '12345678', '12345678', '12345678', '12345678', '12345678', true);
+--
+--INSERT INTO "user" (email, password_hash) VALUES ('driver02@gmail.com','$2a$10$0HdwmS8EG2PBn1lbBbZ/AOsR.QxPkCI64DvC.Cmv/h/jUR/oDrhK.');
+--
+--INSERT INTO "driver" (id, hkid, driving_license_no, taxi_driver_identity_plate, vehicle_license, license_plate_no, is_available) VALUES (7, '12345678', '12345678', '12345678', '12345678', '12345678', true);

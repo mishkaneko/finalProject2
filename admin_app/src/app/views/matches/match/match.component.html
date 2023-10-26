@@ -1,0 +1,156 @@
+<c-card *ngIf="formData" [cBorder]="{top: {color: 'secondary', width: 3}}" [textColor]="'secondary'">
+    <c-card-header>Match Details</c-card-header>
+    <c-card-body>
+        <form>
+            <c-row>
+                <c-col xs="3">
+                    <div [cFormFloating]="true" class="mb-3">
+                        <input cFormControl [value]="formData.result.id" name="matchID" autocomplete="off" disabled />
+                        <label cLabel for="matchID">Match ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="2">
+                    <div [cFormFloating]="true" class="mb-3">
+                        <input cFormControl [value]="formData.result.driver_id" name="driverID" autocomplete="off"
+                            disabled />
+                        <label cLabel for="driverID">Driver ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="1">
+                    <div><button cButton color="dark" style="--cui-btn-font-size: 1.8rem;" (click)="navigateToDriver()">
+                            <fa-icon [icon]="faCircleInfo"></fa-icon>
+                        </button></div>
+                </c-col>
+                <c-col xs="2">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="rideAID" autocomplete="off" [value]="formData.result.rideIds[0]"
+                            disabled />
+                        <label cLabel for="rideAID">Ride A ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="1">
+                    <div><button cButton color="dark" style="--cui-btn-font-size: 1.8rem;" (click)="navigateToRideA()">
+                            <fa-icon [icon]="faCircleInfo"></fa-icon>
+                        </button></div>
+                </c-col>
+                <c-col xs="2">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="rideBID" autocomplete="off" [value]="formData.result.rideIds[1]"
+                            disabled />
+                        <label cLabel for="rideBID">Ride B ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="1">
+                    <div><button cButton color="dark" style="--cui-btn-font-size: 1.8rem;" (click)="navigateToRideB()">
+                            <fa-icon [icon]="faCircleInfo"></fa-icon>
+                        </button></div>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="startName" autocomplete="off"
+                            [value]="formData.locationNamesResult[0].segment_1_start_location_name" disabled />
+                        <label cLabel for="startName">Starting Location</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="waypoint1Name" autocomplete="off"
+                            [value]="formData.locationNamesResult[0].segment_2_start_location_name" disabled />
+                        <label cLabel for="waypoint2Name">1st Waypoint</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="waypoint2Name" autocomplete="off"
+                            [value]="formData.locationNamesResult[0].segment_3_start_location_name" disabled />
+                        <label cLabel for="waypoint2Name">2nd Waypoint</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="endName" autocomplete="off"
+                            [value]="formData.locationNamesResult[0].segment_3_end_location_name" disabled />
+                        <label cLabel for="endName">Destination</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="totalDistance" autocomplete="off"
+                            [value]="formData.locationNamesResult[0].total_distance_meters" disabled />
+                        <label cLabel for="totalDistance">Total Distance</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="estimatedFare" autocomplete="off"
+                            [value]="formData.result.estimated_fare" disabled />
+                        <label cLabel for="estimatedFare">Estimated Total Fare</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="matchTime" autocomplete="off"
+                            [value]="formData.result.match_time | date: 'yyyy-MM-dd HH:mm'" disabled />
+                        <label cLabel for="matchTime">Match Time</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="confirmTime" autocomplete="off"
+                            [value]="formData.result.confirm_time | date: 'yyyy-MM-dd HH:mm'" disabled />
+                        <label cLabel for="confirmTime">Match Confirmed Time</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="startTime" autocomplete="off" disabled
+                            [value]="formData.result.start_time | date: 'yyyy-MM-dd HH:mm'" />
+                        <label cLabel for="startTime">Ride Begin Time</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="endTime" autocomplete="off" disabled
+                            [value]="formData.result.end_time | date: 'yyyy-MM-dd HH:mm'" />
+                        <label cLabel for="endTime">Ride End Time</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="rejectTime" autocomplete="off" disabled
+                            [value]="formData.result.reject_time | date: 'yyyy-MM-dd HH:mm'" />
+                        <label cLabel for="rejectTime">Match Rejection Time</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="cancelTime" autocomplete="off" disabled
+                            [value]="formData.result.cancel_time | date: 'yyyy-MM-dd HH:mm'" />
+                        <label cLabel for="cancelTime">Match Cancellation Time</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;"><button cButton color="danger"
+                        (click)="openCancelToast()"><fa-icon [icon]="faTrash" style="color: white"></fa-icon><span
+                            class="btn-icon">Cancel
+                            Match</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>
+<app-save-toast></app-save-toast>
+<app-cancel-toast (returnClicked)="onReturnButtonClick()"></app-cancel-toast>

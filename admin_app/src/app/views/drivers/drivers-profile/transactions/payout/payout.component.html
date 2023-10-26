@@ -1,0 +1,127 @@
+<c-card *ngIf="formData">
+    <c-card-body>
+        <form>
+            <label class="subtitle lead">Ride Information</label>
+            <c-row>
+                <c-col xs="4">
+                    <div [cFormFloating]="true" class="mb-3">
+                        <input cFormControl id="transactionID" placeholder="..." autocomplete="off"
+                            [value]="formData.transaction_id" disabled />
+                        <label cLabel for="transactionID">Transaction ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="3">
+                    <div [cFormFloating]="true" class="mb-3">
+                        <input cFormControl id="matchID" placeholder="..." autocomplete="off"
+                            [value]="formData.match_id" disabled />
+                        <label cLabel for="matchID">Match ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="1">
+                    <div><button cButton color="dark" style="--cui-btn-font-size: 1.8rem;" (click)="navigateToMatch()">
+                            <fa-icon [icon]="faCircleInfo"></fa-icon>
+                        </button></div>
+                </c-col>
+                <c-col xs="3">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="passengerID" placeholder="..." autocomplete="off"
+                            [value]="formData.passenger_id" disabled />
+                        <label cLabel for="passengerID">Passenger ID</label>
+                    </div>
+                </c-col>
+                <c-col xs="1"><button cButton color="dark" style="--cui-btn-font-size: 1.8rem"
+                        (click)=" navigateToPassengerProfile()">
+                        <div></div><fa-icon [icon]="faCircleInfo"></fa-icon>
+                    </button></c-col>
+
+            </c-row>
+            <label class="subtitle lead">Passenger Payment</label>
+            <c-row><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="passengerAmount" placeholder="..." autocomplete="off"
+                            [value]="formData.amount | number: '2.2'" disabled />
+                        <label cLabel for="passengerAmount">Passenger Paid Amount</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="transactionTime" placeholder="..." autocomplete="off" type="email"
+                            [value]="formData.transaction_time | date: 'yyyy-MM-dd HH-mm'" disabled />
+                        <label cLabel for="transactionTime">Passenger Transaction Time</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="stripeChargeID" placeholder="..." autocomplete="off"
+                            [value]="formData.stripe_charge_id" disabled />
+                        <label cLabel for="stripeChargeID">Stripe Charge ID</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl id="stripeSuccessTime" placeholder="..." autocomplete="off"
+                            [value]="formData.stripe_success_time | date: 'yyyy-MM-dd HH:mm'" disabled />
+                        <label cLabel for="stripeSuccessTime">Stripe Success Time</label>
+                    </div>
+                </c-col></c-row>
+            <div cFormFloating class="mb-3">
+                <input cFormControl name="remark" placeholder="..." autocomplete="off" [(ngModel)]="formData.remark" />
+                <label cLabel for="remark">Passenger Payment Remark</label>
+            </div>
+
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;"><button cButton color="dark"
+                        (click)="updatePassengerTransaction()"><fa-icon [icon]="faFloppyDisk"></fa-icon><span
+                            class="btn-icon">Save</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>
+
+<c-card class="payout-card" *ngIf="tableData">
+    <c-card-header>Driver Payout</c-card-header>
+    <c-card-body>
+        <label class="subtitle lead">Payout Record</label>
+        <table [striped]="true" cTable color="dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Payout Amount (HK$)</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of this.tableData; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{row.amount}}</td>
+                    <td>{{row.payout_time | date: 'yyyy-MM-dd HH:mm'}}</td>
+                    <td>{{row.remark}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form>
+            <label class="subtitle lead">Add Payout Record</label>
+            <c-row>
+                <c-col xs="3">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="driverReceiveAmount" placeholder="..." autocomplete="off"
+                            [(ngModel)]="formData.driver_amount " />
+                        <label cLabel for="driverReceiveAmount">Driver Receive Amount</label>
+                    </div>
+                </c-col>
+                <c-col xs="9">
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="payoutRemark" placeholder="..." autocomplete="off"
+                            [(ngModel)]="formData.payout_remark" />
+                        <label cLabel for="payoutRemark">Driver Payout Remark</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;"><button cButton color="dark"
+                        (click)="addDriverPayout(); refreshPage()"><fa-icon [icon]="faPaperPlane"></fa-icon><span
+                            class="btn-icon">Submit</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body></c-card>
+<app-save-toast></app-save-toast>

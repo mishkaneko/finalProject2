@@ -1,0 +1,328 @@
+CREATE TABLE "user" (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    password_hash CHAR(60),
+    reset_token VARCHAR(255) NULL,
+    image VARCHAR(255) NULL
+);
+CREATE TABLE customer (
+    id INTEGER REFERENCES "user" (id),
+    gender VARCHAR(255),
+    phone VARCHAR(255),
+    name VARCHAR(255),
+    position POINT NULL,
+    position_update_time TIMESTAMP NULL,
+    last_login_time TIMESTAMP NULL
+);
+CREATE TABLE driver (
+    id INTEGER REFERENCES customer (id),
+    customer_id INTEGER REFERENCES customer (id),
+    hkid VARCHAR(255),
+    driving_license_no VARCHAR(255),
+    taxi_driver_identity_plate VARCHAR(255),
+    vehicle_license VARCHAR(255),
+    license_plate_no VARCHAR(255),
+    is_available BOOLEAN
+);
+CREATE TABLE "match" (
+    id SERIAL PRIMARY KEY,
+    driver_id INTEGER NULL REFERENCES driver (id),
+    start_point POINT,
+    waypoint_1 POINT,
+    waypoint_2 POINT,
+    end_point POINT,
+    start_name VARCHAR(255),
+    waypoint_1_name VARCHAR(255),
+    waypoint_2_name VARCHAR(255),
+    end_name VARCHAR(255),
+    total_distance INTEGER,
+    estimated_fare FLOAT,
+    match_time TIMESTAMP,
+    confirm_time TIMESTAMP NULL,
+    start_time TIMESTAMP NULL,
+    end_time TIMESTAMP NULL,
+    reject_time TIMESTAMP NULL,
+    cancel_time TIMESTAMP NULL
+);
+CREATE TABLE transaction (
+    id SERIAL PRIMARY KEY,
+    passenger_id INTEGER REFERENCES customer (id),
+    amount FLOAT,
+    transaction_time TIMESTAMP,
+    passenger_cancel_time TIMESTAMP NULL,
+    stripe_charge_id VARCHAR(255) NULL,
+    stripe_success_time TIMESTAMP NULL,
+    remark TEXT NULL
+);
+CREATE TABLE ride (
+    id SERIAL PRIMARY KEY,
+    passenger_id INTEGER REFERENCES customer (id),
+    match_id INTEGER NULL REFERENCES "match" (id),
+    match_status VARCHAR(255),
+    start_point POINT,
+    end_point POINT,
+    start_name VARCHAR(255),
+    end_name VARCHAR(255),
+    arrive_by_time TIMESTAMP,
+    transaction_id INTEGER NULL REFERENCES transaction (id),
+    distance INTEGER NULL,
+    pickup_time TIMESTAMP NULL,
+    dropoff_time TIMESTAMP NULL
+);
+CREATE TABLE rating (
+    id SERIAL PRIMARY KEY,
+    match_id INTEGER REFERENCES "match" (id),
+    from_user_id INTEGER REFERENCES customer (id),
+    to_user_id INTEGER REFERENCES customer (id),
+    score INTEGER,
+    comment TEXT NULL
+);
+CREATE TABLE additional_charge (
+    id SERIAL PRIMARY KEY,
+    ride_id INTEGER REFERENCES ride (id),
+    transaction_id INTEGER REFERENCES transaction (id),
+    name VARCHAR(255),
+    amount INTEGER
+);
+CREATE TABLE admin (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES "user" (id)
+);
+CREATE TABLE driver_payout (
+    id SERIAL PRIMARY KEY,
+    amount FLOAT,
+    payout_time TIMESTAMP,
+    remark TEXT NULL,
+    driver_id INTEGER REFERENCES driver (id),
+    transaction_id INTEGER NULL REFERENCES transaction (id),
+    admin_id INTEGER REFERENCES admin (id)
+);
+INSERT INTO "user" (email, password_hash)
+VALUES ('user1@example.com', 123),
+    ('user44@example.com', 123),
+    ('user33@example.com', 123),
+    ('user43@example.com', 123),
+    ('user55@example.com', 123),
+    ('user62@example.com', 123),
+    ('user74@example.com', 123);
+INSERT INTO customer (
+        gender,
+        phone,
+        name,
+        position,
+        position_update_time,
+        last_login_time
+    )
+VALUES (
+        'male',
+        '9999 4567',
+        'Ken Lam',
+        NULL,
+        NULL,
+        current_timestamp
+    ),
+    (
+        'female',
+        '9234 5678',
+        'Walter Brian',
+        NULL,
+        NULL,
+        current_timestamp
+    ),
+    (
+        'male',
+        '9456 7891',
+        'Bob Johnson',
+        NULL,
+        NULL,
+        current_timestamp
+    ),
+    (
+        'female',
+        '9234 5678',
+        'Mary Ann',
+        NULL,
+        NULL,
+        current_timestamp
+    );
+INSERT INTO driver (
+        id,
+        hkid,
+        driving_license_no,
+        taxi_driver_identity_plate,
+        vehicle_licence,
+        license_plate_no,
+        is_available
+    )
+VALUES (
+        3,
+        'HK123456',
+        'DL12345',
+        'TAXI123',
+        'V12345',
+        'ABC123',
+        false
+    ),
+    (
+        4,
+        'HK987654',
+        'DL98765',
+        'TAXI987',
+        'V98765',
+        'XYZ789',
+        true
+    );
+INSERT INTO "location" (lat, lng, name)
+VALUES (22.1, 103.3, 'Exchange Tower'),
+    (22.1, 103.3, 'IFC'),
+    (22.1, 103.3, 'ICC');
+INSERT INTO "segment" (
+        start_location_id,
+        end_location_id,
+        distance_in_meters,
+        duration_in_seconds
+    )
+VALUES (1, 2, 55, 6789),
+    (1, 2, 55, 6789),
+    (1, 2, 55, 6789);
+INSERT INTO "match" (
+        driver_id,
+        segment_1_id,
+        segment_2_id,
+        segment_3_id,
+        total_distance_in_meters,
+        estimated_duration_in_seconds,
+        estimated_fare,
+        match_time,
+        start_time,
+        end_time,
+        confirm_time,
+        reject_time,
+        cancel_time
+    )
+VALUES (
+        3,
+        4,
+        5,
+        6,
+        123,
+        123456,
+        45.10,
+        current_timestamp,
+        current_timestamp,
+        current_timestamp,
+        current_timestamp,
+        null,
+        current_timestamp
+    ),
+    (
+        4,
+        6,
+        4,
+        5,
+        234,
+        23456,
+        55.32,
+        current_timestamp,
+        current_timestamp,
+        null,
+        current_timestamp,
+        current_timestamp,
+        current_timestamp
+    ),
+    (
+        3,
+        5,
+        4,
+        6,
+        345,
+        3456,
+        33.10,
+        current_timestamp,
+        current_timestamp,
+        current_timestamp,
+        null,
+        current_timestamp,
+        current_timestamp
+    );
+INSERT INTO ride (
+        passenger_id,
+        match_id,
+        start_location_id,
+        end_location_id,
+        arrive_by_time,
+        transaction_id,
+        saved_fare,
+        distance,
+        pickup_time,
+        dropoff_time,
+        status
+    )
+VALUES (
+        1,
+        4,
+        1,
+        1,
+        current_timestamp,
+        3,
+        33.39,
+        66,
+        current_timestamp,
+        current_timestamp,
+        'available'
+    ),
+    (
+        2,
+        4,
+        3,
+        2,
+        current_timestamp,
+        4,
+        88,
+        99,
+        current_timestamp,
+        current_timestamp,
+        'available'
+    ),
+    (
+        1,
+        4,
+        1,
+        1,
+        current_timestamp,
+        5,
+        33.39,
+        66,
+        current_timestamp,
+        current_timestamp,
+        'available'
+    );
+INSERT INTO transaction (
+        passenger_id,
+        amount,
+        transaction_time,
+        passenger_cancel_time,
+        stripe_charge_id,
+        stripe_success_time,
+        remark
+    )
+VALUES (
+        1,
+        55.50,
+        current_timestamp,
+        current_timestamp,
+        'ABCDONE',
+        current_timestamp,
+        ' REMARK 2'
+    ),
+    (
+        2,
+        55.50,
+        current_timestamp,
+        current_timestamp,
+        'ABCDONE',
+        current_timestamp,
+        '  REMARK 2'
+    );
+INSERT INTO "admin" (id)
+VALUES (1);

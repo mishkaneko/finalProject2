@@ -1,0 +1,33 @@
+package com.rideLinker.repository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Repository
+@Transactional
+public class RideRepo {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @Modifying
+    public List<PostRidePlanDTO> postRidePlan(PostRidePlanDTO postRidePlanDTO, int userId) {
+        jdbcTemplate.update("""
+                INSERT INTO ride (start_point, end_point, arrive_by_time) VALUES (?,?,?);
+                """, postRidePlanDTO.startPoint, postRidePlanDTO.endPoint, postRidePlanDTO.arriveByTime);
+
+        // todo I need to also get the time within an hoyr
+        // todo I also need to obtain user id to exclude it.
+        List<PostRidePlanDTO> availableUsers = jdbcTemplate.query("""
+                SELECT end_point, start_point, arrive_by_time From ride WHERE id != ?
+                """, new BeanPropertyRowMapper<>(PostRidePlanDTO.class), userId);
+
+        return availableUsers;
+    }
+}

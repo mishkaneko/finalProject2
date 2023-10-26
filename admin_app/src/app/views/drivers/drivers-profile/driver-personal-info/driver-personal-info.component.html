@@ -1,0 +1,75 @@
+<c-card *ngIf="formData">
+    <c-card-body>
+        <form>
+            <c-row>
+                <c-col>
+                    <div [cFormFloating]=" true" class="mb-3">
+                        <input cFormControl [(ngModel)]="formData.name" name="driverName" autocomplete="off" />
+                        <label cLabel for="driverName">Full Name</label>
+
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating>
+                        <select cSelect id="floatingSelect" [(ngModel)]="formData.gender" name="gender">
+                            <option [value]="'male'">Male</option>
+                            <option [value]="'female'">Female</option>
+                        </select>
+                        <label cLabel for="floatingSelect">Gender</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="hkid" autocomplete="off" [(ngModel)]="formData.hkid" />
+                        <label cLabel for="hkid">HKID</label>
+                    </div>
+                </c-col>
+            </c-row>
+            <c-row><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="phoneNo" autocomplete="off" [(ngModel)]="formData.phone" />
+                        <label cLabel for="phoneNo">Phone Number</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="email" autocomplete="off" type="email" [(ngModel)]="formData.email" />
+                        <label cLabel for="email">Email Address</label>
+                    </div>
+                </c-col></c-row>
+            <c-row>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="drivingLicense" autocomplete="off"
+                            [(ngModel)]="formData.driving_license_no" />
+                        <label cLabel for="drivingLicense">Driving License No.</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="licensePlate" autocomplete="off"
+                            [(ngModel)]="formData.license_plate_no" />
+                        <label cLabel for="licensePlate">License Plate</label>
+                    </div>
+                </c-col><c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="taxiPlate" autocomplete="off"
+                            [(ngModel)]="formData.taxi_driver_identity_plate" />
+                        <label cLabel for="taxiPlate">Taxi Driver Identity Plate</label>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div cFormFloating class="mb-3">
+                        <input cFormControl name="vehicleLicense" autocomplete="off"
+                            [(ngModel)]="formData.vehicle_license" />
+                        <label cLabel for="vehicleLicense">Vehicle License</label>
+                    </div>
+                </c-col></c-row>
+            <div class="space">
+                <div class="mx-auto col-6 d-grid" style=" width: 200px;">
+                    <button cButton color="dark" (click)="updateDriverPersonalInfo(); false"><fa-icon
+                            [icon]="faFloppyDisk"></fa-icon><span class="btn-icon">Save</span></button>
+                </div>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>
+<app-save-toast></app-save-toast>

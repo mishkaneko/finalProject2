@@ -1,0 +1,5 @@
+--INSERT INTO "segment" (start_location_id, end_location_id, distance_in_meters, duration_in_seconds) VALUES (1, 3, 9427, 900);
+--INSERT INTO "segment" (start_location_id, end_location_id, distance_in_meters, duration_in_seconds) VALUES (3, 2, 11300, 1080);
+--INSERT INTO "segment" (start_location_id, end_location_id, distance_in_meters, duration_in_seconds) VALUES (2, 4, 1532, 420);
+--
+--INSERT INTO match (segment_1_id, segment_2_id, segment_3_id, total_distance_in_meters, estimated_duration_in_seconds, estimated_fare, match_time) VALUES (1, 2, 3, 18100, 2400, 172.25, '2023-10-18 19:37+08:00');

@@ -1,0 +1,15 @@
+<c-toaster [placement]="position" class="p-3" position="fixed">
+    <c-toast #toast [autohide]="false" [visible]="visible">
+        <c-toast-body>
+            <span class="toast-text">Are you sure you want to cancel this match?</span>
+            <div class="mt-2 pt-2 border-top btn-group">
+                <button cButton color="danger" size="sm" (click)="onReturnClick()">
+                    <span class="btn-text">Cancel Match</span>
+                </button>
+                <button [cToastClose]="toast" cButton class="ms-1" color="secondary">
+                    <span class="btn-text">Return</span>
+                </button>
+            </div>
+        </c-toast-body>
+    </c-toast>
+</c-toaster>

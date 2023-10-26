@@ -1,0 +1,22 @@
+init get status
+
+  - empty: available -> ask where to go screen
+  - available: searching -> wait match screen
+  - matching: invitation -> ask to pay screen
+  - matching: waitingConfirmation -> ask other to pay screen
+  - matched: planned -> ...
+
+
+    (is match.driver_id null?)
+  - waitingDriverConfirmation -> waiting driver to confirm
+
+    (is rider.pickup_time null?)
+  - showDriver -> driver on the road, waiting to pick up me 
+  
+    (is ride.dropoff_time null?)
+  - pickedUp -> full screen map showing where am I (in the car)
+  
+    (is rating not exist?)
+  - completed -> ask to review -> back to empty state 
+
+

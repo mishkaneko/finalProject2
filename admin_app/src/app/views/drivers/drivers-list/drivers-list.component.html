@@ -1,0 +1,33 @@
+<div class="table-title-container">
+    <h1 class="lead table-title">List of Drivers</h1>
+</div>
+<table [striped]="true" cTable color="dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Driver ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">License Plate No.</th>
+            <th scope="col">Availability</th>
+            <th scope="col">Last Login</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tableData; let i = index">
+            <th scope="row">
+                {{ i + 1 }}</th>
+            <td>{{ data.driver_id }}</td>
+            <td><button cButton color="light" (click)="navigateToDriverProfile(data.driver_id, data.name)">{{ data.name
+                    }}</button>
+            </td>
+            <td>{{ data.phone }}</td>
+            <td>{{ data.license_plate_no }}</td>
+            <td>
+                <fa-icon [icon]="faCircle" [style.color]="data.availability === 'Available' ? '#269000' : '#8f0000'">
+                </fa-icon>
+            </td>
+            <td>{{ data.last_login_time | date: 'yyyy-MM-dd HH:mm'}}</td>
+        </tr>
+    </tbody>
+</table>
