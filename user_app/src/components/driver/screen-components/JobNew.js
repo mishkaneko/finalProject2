@@ -30,36 +30,39 @@ const JobNew = ({ navigation }) => {
 
   useEffect(() => {
     setRideDetailsArr([
-      { key: 'Pickup 2:', value: 'Princess Margaret Hospital, Kwai Chung' },
+      {
+        key: 'Pickup 2:',
+        value: 'Hotel One Eighteen, Electric Road, Causeway Bay',
+      },
       {
         key: 'Dropoff 1: ',
-        value: 'Yu Nga Court, Yi Tung Road, \nTung Chung',
+        value: 'Chai Wan Park, Yee Shun Street, Chai Wan',
       },
       {
         key: 'Dropoff 2: ',
-        value: 'North Lantau Island, \nTung Chung',
+        value: 'Shek O Beach, Shek O',
       },
       {
         key: 'Duration: ',
-        value: '22 mins',
+        value: '32 mins',
       },
       {
         key: 'Distance: ',
-        value: '9.8 km',
+        value: '18.7 km',
       },
     ])
     setMapData({
-      origin: { latitude: 22.321045835160486, longitude: 114.20939099960918 },
+      origin: { latitude: 22.27823423452243, longitude: 114.17214708243273 },
       endPoint: {
-        latitude: 22.281980723505754,
-        longitude: 113.93933947829203,
+        latitude: 22.229447326839672,
+        longitude: 114.25076795334893,
       },
       waypoints: [
         {
-          latitude: 22.34118107523209,
-          longitude: 114.13377883859162,
+          latitude: 22.285359056787513,
+          longitude: 114.19178217925582,
         },
-        { latitude: 22.295934099636106, longitude: 113.94669489119876 },
+        { latitude: 22.26779106440512, longitude: 114.2388405833639 },
       ],
     })
     // TODO JWT?
@@ -97,7 +100,8 @@ const JobNew = ({ navigation }) => {
             tw="text-teal-800 text-4xl self-center mr-4"
             style={styles.font}
           >
-            $100.90
+            {/* TODO VIDEO */}
+            $163.90
           </StyledTextD>
           {isAvailable ? (
             <ConfirmButton
@@ -121,16 +125,16 @@ const JobNew = ({ navigation }) => {
                   style={styles.font}
                   tw="text-teal-600 text-base text-right w-58"
                 >
-                  Exchange Tower
+                  Beverly House,
                 </StyledTextD>
                 <StyledTextD
                   style={styles.font}
                   tw="text-teal-600 text-base text-right w-58"
                 >
-                  Wang Chiu Road, Kowloon Bay
+                  Lockhart Road, Wan Chai
                 </StyledTextD>
                 <StyledTextD style={styles.font} tw="text-base text-right">
-                  5 mins (1.1 km) away
+                  1 min (0.1 km) away
                 </StyledTextD>
               </View>
             </View>

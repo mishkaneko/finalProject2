@@ -22,10 +22,13 @@ export async function createPaymentIntentByRideId(ride_id: number) {
   // let amount = +transaction?.amount;
   // if (!amount) throw new Error('failed to find amount by ride id');
   // TODO VIDEO
-  const amount = 212.7;
+  const amount = 59.5;
 
   const customer = await stripe.customers.create();
-  const ephemeralKey = await stripe.ephemeralKeys.create({ customer: customer.id }, { apiVersion: '2023-10-16' });
+  const ephemeralKey = await stripe.ephemeralKeys.create(
+    { customer: customer.id },
+    { apiVersion: '2023-10-16' }
+  );
   let paymentIntent = await stripe.paymentIntents.create({
     amount: Math.round(amount * 100),
     currency: 'hkd',

@@ -18,7 +18,7 @@ const PassengerRideCard = ({
   const role = useSelector((state) => state.auth.role)
 
   return (
-    <ScrollView tw="rounded-lg h-44 px-2 mb-2 py-2 bg-gray-100 rounded-lg shadow-md">
+    <View tw="rounded-lg px-2 mb-2 py-2 bg-gray-100 rounded-lg shadow-md">
       <View tw="flex-row mb-2  pl-3">
         <FontAwesome5
           name="map-marker-alt"
@@ -135,14 +135,12 @@ const PassengerRideCard = ({
         {/* <Text tw="pl-6 mt-2 text-xl" style={styles.font}>
           {status}
         </Text> */}
-        <View>
-          <Text tw="pr-12 " style={styles.font}>
-            Fare ${fare}
-          </Text>
+        <View tw="mr-2 mt-2">
+          <Text style={styles.font}>Fare ${fare}</Text>
           <Text style={styles.font}>Extra ${extraFee}</Text>
         </View>
       </View>
-    </ScrollView>
+    </View>
   )
 }
 

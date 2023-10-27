@@ -13,7 +13,7 @@ const RatingCard = ({ from_name, score, comment }) => {
   console.log(from_name, score, comment)
   return (
     <>
-      <View tw="bg-gray-100  rounded-lg h-28 px-4 mb-3 shadow-sm">
+      <View tw="bg-gray-100  rounded-lg px-4 mb-3 pb-4 shadow-sm">
         <View tw="mt-2 mb-1">
           <Text style={styles.font}>{from_name}</Text>
           {/* <Text style={styles.font}>{date}</Text> */}
@@ -38,7 +38,7 @@ const RatingCard = ({ from_name, score, comment }) => {
             />
           )}
         </View>
-        <ScrollView>
+        <View>
           <Text style={styles.font}>
             {comment}
             {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae officiis
@@ -49,7 +49,7 @@ const RatingCard = ({ from_name, score, comment }) => {
         tempore, quae, dolores placeat ea ducimus reprehenderit eum, molestiae
         vel. Veritatis */}
           </Text>
-        </ScrollView>
+        </View>
       </View>
     </>
   )

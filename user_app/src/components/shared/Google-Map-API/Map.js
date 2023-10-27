@@ -29,10 +29,10 @@ const Map = ({ height, mapData }) => {
 
   // TODO VIDEO
   const locationNames = [
-    'Exchange Tower, Wang Chiu Road, Kowloon Bay',
-    'Princess Margaret Hospital, Kwai Chung',
-    'Yu Nga Court, Yi Tung Road, Tung Chung',
-    'North Lantau Island, Tung Chung',
+    'Beverly House, Lockhart Road, Wan Chai',
+    'Hotel One Eighteen, Electric Road',
+    'Chai Wan Park, Yee Shun Street, Chai Wan',
+    'Shek O Beach, Shek O',
   ]
 
   useEffect(() => {

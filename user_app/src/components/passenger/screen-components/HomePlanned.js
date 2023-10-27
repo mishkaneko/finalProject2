@@ -38,24 +38,24 @@ const HomePlanned = ({ navigation }) => {
     setRideDetailsArr([
       {
         key: 'Other Passenger',
-        value: 'Jonathan Lam (4.91★)',
+        value: 'Martin Ho (4.93★)',
         // value: 'Kathrine Koo (4.86★)',
       },
       {
         key: 'Pickup',
-        value: 'Exchange Tower, \nWang Chiu Road, Kowloon Bay',
+        value: 'Beverly House, Lockhart Road, Wan Chai',
         // value: 'Princess Margaret Hospital, Kwai Chung',
       },
       {
         key: 'Dropoff',
-        value: 'Yu Nga Court, \n Yi Tung Road, \nTung Chung',
+        value: 'Chai Wan Park, Yee Shun Street, Chai Wan',
         // value: 'North Lantau Island, Tung Chung',
       },
-      { key: 'Estimated Pickup', value: 'Today 4:45 p.m.' },
+      { key: 'Estimated Pickup', value: 'Today 6:00 p.m.' },
       // { key: 'Estimated Pickup', value: 'Today 5:05 p.m.' },
-      { key: 'Estimated Dropoff', value: 'Today 5:25 p.m.' },
+      { key: 'Estimated Dropoff', value: 'Today 6:36 p.m.' },
       // { key: 'Estimated Dropoff', value: 'Today 5:35 p.m.' },
-      { key: 'Saved Amount', value: '$78.30' },
+      { key: 'Saved Amount', value: '$50.50' },
       // { key: 'Saved Amount', value: '$114.60' },
     ])
   }, [])
@@ -75,7 +75,7 @@ const HomePlanned = ({ navigation }) => {
               <View tw="flex-row justify-end my-2 mb-10">
                 <StyledTextP style={styles.font}>Fare: </StyledTextP>
                 <StyledTextP style={styles.font} tw="text-indigo-600">
-                  $212.70
+                  $59.50
                   {/* $116.90 */}
                 </StyledTextP>
               </View>

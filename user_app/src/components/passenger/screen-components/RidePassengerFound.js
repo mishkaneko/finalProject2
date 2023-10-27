@@ -47,38 +47,38 @@ const RidePassengerFound = ({ navigation }) => {
     setRideDetailsArr([
       {
         key: 'Other Passenger',
-        value: 'Jonathan Lam (4.91★)',
+        value: 'Martin Ho (4.93★)',
         // value: 'Kathrine Koo (4.86★)',
       },
       {
         key: 'Pickup',
-        value: 'Exchange Tower, \nWang Chiu Road, Kowloon Bay',
+        value: 'Beverly House, Lockhart Road, Wan Chai',
         // value: 'Princess Margaret Hospital, Kwai Chung',
       },
       {
         key: 'Dropoff',
-        value: 'Yu Nga Court, \n Yi Tung Road, \nTung Chung',
+        value: 'Chai Wan Park, Yee Shun Street, Chai Wan',
         // value: 'North Lantau Island, Tung Chung',
       },
-      { key: 'Estimated Pickup', value: 'Today 4:45 p.m.' },
+      { key: 'Estimated Pickup', value: 'Today 6:00 p.m.' },
       // { key: 'Estimated Pickup', value: 'Today 5:05 p.m.' },
-      { key: 'Estimated Dropoff', value: 'Today 5:25 p.m.' },
+      { key: 'Estimated Dropoff', value: 'Today 6:36 p.m.' },
       // { key: 'Estimated Dropoff', value: 'Today 5:35 p.m.' },
-      { key: 'Saved Amount', value: '$78.30' },
+      { key: 'Saved Amount', value: '$50.50' },
       // { key: 'Saved Amount', value: '$114.60' },
     ])
     setMapData({
-      origin: { latitude: 22.321045835160486, longitude: 114.20939099960918 },
+      origin: { latitude: 22.27823423452243, longitude: 114.17214708243273 },
       endPoint: {
-        latitude: 22.281980723505754,
-        longitude: 113.93933947829203,
+        latitude: 22.229447326839672,
+        longitude: 114.25076795334893,
       },
       waypoints: [
         {
-          latitude: 22.34118107523209,
-          longitude: 114.13377883859162,
+          latitude: 22.285359056787513,
+          longitude: 114.19178217925582,
         },
-        { latitude: 22.295934099636106, longitude: 113.94669489119876 },
+        { latitude: 22.26779106440512, longitude: 114.2388405833639 },
       ],
     })
   }, [])
@@ -160,7 +160,7 @@ const RidePassengerFound = ({ navigation }) => {
               <View tw="flex-row justify-end mt-2 mb-6">
                 <StyledTextP style={styles.font}>Fare: </StyledTextP>
                 <StyledTextP tw="text-indigo-600" style={styles.font}>
-                  $212.70
+                  $59.50
                   {/* $116.90 */}
                 </StyledTextP>
               </View>

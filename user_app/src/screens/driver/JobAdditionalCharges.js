@@ -93,8 +93,8 @@ const JobAdditionalCharges = ({ navigation }) => {
   const otherFeesBRef = useRef(null)
 
   // TODO Leave Blank
-  const [passengerA, setPassengerA] = useState('Johnathan Lam')
-  const [passengerB, setPassengerB] = useState('Kristina Koo')
+  const [passengerA, setPassengerA] = useState('Victoria Tung')
+  const [passengerB, setPassengerB] = useState('Martin Ho')
 
   useEffect(() => {
     // TODO JWT?

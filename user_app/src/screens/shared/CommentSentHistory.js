@@ -23,7 +23,7 @@ const Item = ({ comment, score, toName, id }) => {
   const iconColor = role === 'passenger' ? '#1a237e' : '#042f2e' // Set the color based on the role
 
   return (
-    <View tw="bg-gray-100 rounded-lg h-28 px-4 mb-3 shadow-sm mx-8">
+    <View tw="bg-gray-100 rounded-lg px-4 mb-3 shadow-sm mx-8 pb-3">
       <View tw="flex-row justify-between">
         <Text
           style={styles.font}
@@ -60,9 +60,9 @@ const Item = ({ comment, score, toName, id }) => {
           tw="mb-2"
         />
       )}
-      <ScrollView>
+      <View>
         <Text style={styles.font}>{comment}</Text>
-      </ScrollView>
+      </View>
     </View>
   )
 }

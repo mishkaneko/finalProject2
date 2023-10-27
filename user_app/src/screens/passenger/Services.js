@@ -13,7 +13,8 @@ const Services = ({ navigation }) => {
   const rideAlone = () => {
     const data = { match: false }
     // TODO Later fix path    // navigation.navigate('RidePlan', { data })
-    navigation.navigate('RidePassengerFound')
+    // navigation.navigate('RidePassengerFound')
+    navigation.navigate('Ride')
   }
 
   return (

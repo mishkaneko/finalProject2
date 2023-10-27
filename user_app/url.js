@@ -8,7 +8,7 @@
 // let SERVER_ORIGIN = 'http://192.168.80.63'
 
 // Susan Home
-let SERVER_ORIGIN = 'http://192.168.0.104'
+let SERVER_ORIGIN = 'http://192.168.50.251'
 
 export const NODE_SERVER_ORIGIN = SERVER_ORIGIN + ':8100'
 

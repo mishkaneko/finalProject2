@@ -22,6 +22,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { useToast } from 'react-native-toast-notifications'
 import { HomeStatusContext } from '../../contexts/HomeStatusContext'
 import { post } from '../../utils/java-API'
+import { RideStatusContext } from '../../contexts/RideStatusContext'
 
 const ratingSelections = [
   { label: '5', value: '5' },
@@ -33,6 +34,7 @@ const ratingSelections = [
 
 const LeaveReview = ({ navigation }) => {
   const { homeStatus, setHomeStatus } = useContext(HomeStatusContext)
+  const { rideStatus, setRideStatus } = useContext(RideStatusContext)
   const { state, update } = useObject({
     score: null,
     comment: null,
@@ -59,13 +61,15 @@ const LeaveReview = ({ navigation }) => {
       icon: <MaterialIcons name="done" size={24} color="white" />,
     })
     setHomeStatus('available')
+    setRideStatus('waitingDriverConfirmation')
     // navigation.navigate('PassengerTabs', { screen: 'History' })
     navigation.navigate('PassengerTabs', { screen: 'Home' })
   }
 
   const onCancel = () => {
     setHomeStatus('available')
-    navigation.navigate('PassengerTabs', { screen: 'History' })
+    setRideStatus('waitingDriverConfirmation')
+    navigation.navigate('PassengerTabs', { screen: 'Home' })
   }
 
   return (
@@ -98,7 +102,7 @@ const LeaveReview = ({ navigation }) => {
                 Passenger:
               </StyledTextP>
               <StyledTextP style={styles.font} tw="flex-1">
-                John Lam
+                Martin Ho
               </StyledTextP>
             </View>
             <View tw="flex-row mb-2">
