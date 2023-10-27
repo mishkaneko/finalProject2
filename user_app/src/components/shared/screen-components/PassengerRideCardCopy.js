@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons'
 
 const PassengerRideCard = ({
   status,
@@ -46,19 +47,22 @@ const PassengerRideCard = ({
           </View>
         </View>
         <View>
+          <View tw="flex-row">
+            <Ionicons name="ios-time-sharp" size={20} color="#E1C16E" />
+            <Text
+              style={styles.font}
+              tw={`${
+                role === 'passenger' ? `text-indigo-950` : `text-teal-950`
+              } pl-2`}
+            >
+              {fromDate}
+            </Text>
+          </View>
           <Text
             style={styles.font}
             tw={`${
               role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-            } pl-8`}
-          >
-            {fromDate}
-          </Text>
-          <Text
-            style={styles.font}
-            tw={`${
-              role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-            } pl-8`}
+            } pl-7`}
           >
             {fromTime.slice(0, -3)}
           </Text>
@@ -96,7 +100,7 @@ const PassengerRideCard = ({
             style={styles.font}
             tw={`${
               role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-            } pl-8`}
+            } pl-7`}
           >
             {toDate}
           </Text>
@@ -104,7 +108,7 @@ const PassengerRideCard = ({
             style={styles.font}
             tw={`${
               role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-            } pl-8`}
+            } pl-7`}
           >
             {toTime.slice(0, -3)}
           </Text>

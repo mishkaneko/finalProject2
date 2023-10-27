@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import { get } from './api'
 import { StarRatingDisplay } from 'react-native-star-rating-widget'
@@ -70,6 +71,7 @@ const CommentSent = () => {
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(5)
   const role = useSelector((state) => state.auth.role)
+  const [isLoading, setIsLoading] = useState(true)
   const navigation = useNavigation()
 
   const getBackgroundColor = () => {
@@ -84,6 +86,7 @@ const CommentSent = () => {
     let result = await get('/user/commentpublished')
     console.log(result)
     setComment(result)
+    setIsLoading(false)
   }
   useEffect(() => {
     getComment()
@@ -110,33 +113,38 @@ const CommentSent = () => {
         >
           My Published Comments
         </Text>
-
-        {comment.length > 0 ? (
-          <FlatList
-            data={comment}
-            renderItem={({ item }) => (
-              <>
-                <Item
-                  comment={item.comment}
-                  score={item.score}
-                  toName={item.to_name}
-                  id={item.id}
-                />
-              </>
-            )}
-            keyExtractor={(item) => item.id}
-          />
+        {isLoading ? (
+          <ActivityIndicator size="large" />
         ) : (
-          <View tw="bg-gray-100 rounded-lg h-48 px-4 mb-3 shadow-sm mt-2 mb-1 mx-4 justify-center items-center">
-            <Text
-              style={styles.font}
-              tw={`${
-                role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-              } text-base font-semibold text-base text-center`}
-            >
-              You haven't published rating for others yet.
-            </Text>
-          </View>
+          <>
+            {comment.length > 0 ? (
+              <FlatList
+                data={comment}
+                renderItem={({ item }) => (
+                  <>
+                    <Item
+                      comment={item.comment}
+                      score={item.score}
+                      toName={item.to_name}
+                      id={item.id}
+                    />
+                  </>
+                )}
+                keyExtractor={(item) => item.id}
+              />
+            ) : (
+              <View tw="bg-gray-100 rounded-lg h-48 px-4 mb-3 shadow-sm mt-2 mb-1 mx-4 justify-center items-center">
+                <Text
+                  style={styles.font}
+                  tw={`${
+                    role === 'passenger' ? `text-indigo-950` : `text-teal-950`
+                  } text-base font-semibold text-base text-center`}
+                >
+                  You haven't published rating for others yet.
+                </Text>
+              </View>
+            )}
+          </>
         )}
       </View>
     </SafeAreaView>

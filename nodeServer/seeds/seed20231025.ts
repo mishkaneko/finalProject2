@@ -1,5 +1,6 @@
 import { Knex } from 'knex';
 import { hash } from 'bcryptjs';
+import { isNull } from 'util';
 
 const ROUND = 12;
 
@@ -3215,7 +3216,8 @@ export async function seed(knex: Knex): Promise<void> {
       from_user_id: 2,
       to_user_id: 1,
       score: 2,
-      comment: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      comment:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     },
     {
       match_id: 3,
@@ -3281,14 +3283,14 @@ export async function seed(knex: Knex): Promise<void> {
     },
     {
       match_id: 11,
-      from_user_id: 11,
+      from_user_id: 1,
       to_user_id: 2,
       score: 1,
       comment: 'Lorem Ipsum',
     },
     {
       match_id: 12,
-      from_user_id: 12,
+      from_user_id: 1,
       to_user_id: 2,
       score: 1,
       comment:
@@ -3315,7 +3317,8 @@ export async function seed(knex: Knex): Promise<void> {
       from_user_id: 15,
       to_user_id: 2,
       score: 1,
-      comment: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      comment:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     },
     {
       match_id: 16,
@@ -3336,7 +3339,8 @@ export async function seed(knex: Knex): Promise<void> {
       from_user_id: 18,
       to_user_id: 2,
       score: 3,
-      comment: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      comment:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     },
     {
       match_id: 19,
@@ -3548,7 +3552,7 @@ export async function seed(knex: Knex): Promise<void> {
       start_location_id: 50,
       end_location_id: 31,
       arrive_by_time: new Date('2023-10-20T16:34:13.570Z'),
-      transaction_id: 1,
+      transaction_id: null,
       distance: 28,
       pickup_time: null,
       dropoff_time: null,
@@ -3592,7 +3596,7 @@ export async function seed(knex: Knex): Promise<void> {
     {
       passenger_id: 1,
       match_id: 5,
-      status: 'canceled',
+      status: 'matched',
       start_location_id: 38,
       end_location_id: 15,
       arrive_by_time: new Date('2023-10-13T16:40:13.570Z'),
@@ -3680,10 +3684,10 @@ export async function seed(knex: Knex): Promise<void> {
       start_location_id: 36,
       end_location_id: 9,
       arrive_by_time: new Date('2023-10-09T00:46:03.085Z'),
-      transaction_id: 12,
+      transaction_id: null,
       distance: 28,
-      pickup_time: new Date('2023-10-09T23:52:03.085Z'),
-      dropoff_time: new Date('2023-10-09T23:08:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 1,
@@ -3740,10 +3744,10 @@ export async function seed(knex: Knex): Promise<void> {
       start_location_id: 26,
       end_location_id: 2,
       arrive_by_time: new Date('2023-10-15T17:04:03.085Z'),
-      transaction_id: 17,
+      transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-15T00:23:03.085Z'),
-      dropoff_time: new Date('2023-10-15T19:54:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 2,
@@ -3788,7 +3792,7 @@ export async function seed(knex: Knex): Promise<void> {
       start_location_id: 50,
       end_location_id: 31,
       arrive_by_time: new Date('2023-10-20T16:34:13.570Z'),
-      transaction_id: 1,
+      transaction_id: null,
       distance: 28,
       pickup_time: null,
       dropoff_time: null,
@@ -3836,10 +3840,10 @@ export async function seed(knex: Knex): Promise<void> {
       start_location_id: 38,
       end_location_id: 15,
       arrive_by_time: new Date('2023-10-13T16:40:13.570Z'),
-      transaction_id: 5,
+      transaction_id: null,
       distance: 17,
-      pickup_time: new Date('2023-10-13T15:31:13.570Z'),
-      dropoff_time: new Date('2023-10-13T16:10:13.570Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 2,
@@ -3920,10 +3924,10 @@ export async function seed(knex: Knex): Promise<void> {
       start_location_id: 36,
       end_location_id: 9,
       arrive_by_time: new Date('2023-10-09T00:46:03.085Z'),
-      transaction_id: 12,
+      transaction_id: null,
       distance: 28,
-      pickup_time: new Date('2023-10-09T23:52:03.085Z'),
-      dropoff_time: new Date('2023-10-09T23:08:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 1,
@@ -3982,8 +3986,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-15T17:04:03.085Z'),
       transaction_id: 17,
       distance: null,
-      pickup_time: new Date('2023-10-15T00:23:03.085Z'),
-      dropoff_time: new Date('2023-10-15T19:54:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 2,
@@ -4078,8 +4082,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-13T16:40:13.570Z'),
       transaction_id: 5,
       distance: 17,
-      pickup_time: new Date('2023-10-13T15:31:13.570Z'),
-      dropoff_time: new Date('2023-10-13T16:10:13.570Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 2,
@@ -4162,8 +4166,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-09T00:46:03.085Z'),
       transaction_id: 12,
       distance: 28,
-      pickup_time: new Date('2023-10-09T23:52:03.085Z'),
-      dropoff_time: new Date('2023-10-09T23:08:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 1,
@@ -4222,8 +4226,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-15T17:04:03.085Z'),
       transaction_id: 17,
       distance: null,
-      pickup_time: new Date('2023-10-15T00:23:03.085Z'),
-      dropoff_time: new Date('2023-10-15T19:54:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 2,
@@ -4246,8 +4250,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-17T13:45:03.085Z'),
       transaction_id: 19,
       distance: null,
-      pickup_time: new Date('2023-10-17T12:10:03.085Z'),
-      dropoff_time: new Date('2023-10-17T15:30:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 4,
@@ -4270,8 +4274,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-19T09:30:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-19T09:00:03.085Z'),
-      dropoff_time: new Date('2023-10-19T10:45:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 6,
@@ -4294,8 +4298,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-21T10:15:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-21T09:30:03.085Z'),
-      dropoff_time: new Date('2023-10-21T11:45:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 8,
@@ -4318,8 +4322,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-23T14:30:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-23T14:05:03.085Z'),
-      dropoff_time: new Date('2023-10-23T16:10:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 10,
@@ -4342,8 +4346,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-25T11:10:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-25T10:30:03.085Z'),
-      dropoff_time: new Date('2023-10-25T12:45:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 12,
@@ -4366,8 +4370,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-27T15:35:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-27T14:55:03.085Z'),
-      dropoff_time: new Date('2023-10-27T17:10:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 14,
@@ -4390,8 +4394,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-29T13:20:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-29T12:45:03.085Z'),
-      dropoff_time: new Date('2023-10-29T14:55:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 16,
@@ -4414,8 +4418,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-31T15:30:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-31T14:45:03.085Z'),
-      dropoff_time: new Date('2023-10-31T16:55:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 18,
@@ -4438,8 +4442,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-31T15:30:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-31T14:45:03.085Z'),
-      dropoff_time: new Date('2023-10-31T16:55:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 20,
@@ -4462,8 +4466,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-01T08:30:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-01T07:55:03.085Z'),
-      dropoff_time: new Date('2023-10-01T09:45:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 22,
@@ -4486,8 +4490,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-02T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-02T09:20:03.085Z'),
-      dropoff_time: new Date('2023-10-02T11:35:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 24,
@@ -4510,8 +4514,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-03T11:45:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-03T11:05:03.085Z'),
-      dropoff_time: new Date('2023-10-03T13:20:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 26,
@@ -4534,8 +4538,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-04T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-04T09:25:03.085Z'),
-      dropoff_time: new Date('2023-10-04T11:40:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 28,
@@ -4558,8 +4562,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-04T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-04T09:25:03.085Z'),
-      dropoff_time: new Date('2023-10-04T11:40:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 28,
@@ -4582,8 +4586,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-06T11:45:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-06T11:05:03.085Z'),
-      dropoff_time: new Date('2023-10-06T13:20:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 32,
@@ -4606,8 +4610,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-07T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-07T09:25:03.085Z'),
-      dropoff_time: new Date('2023-10-07T11:40:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 34,
@@ -4630,8 +4634,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-08T11:15:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-08T10:40:03.085Z'),
-      dropoff_time: new Date('2023-10-08T12:50:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 36,
@@ -4654,8 +4658,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-09T11:45:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-09T11:05:03.085Z'),
-      dropoff_time: new Date('2023-10-09T13:20:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 38,
@@ -4678,8 +4682,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-10T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-10T09:25:03.085Z'),
-      dropoff_time: new Date('2023-10-10T11:40:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 40,
@@ -4702,8 +4706,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-10T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-10T09:25:03.085Z'),
-      dropoff_time: new Date('2023-10-10T11:40:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 40,
@@ -4726,8 +4730,8 @@ export async function seed(knex: Knex): Promise<void> {
       arrive_by_time: new Date('2023-10-10T10:00:03.085Z'),
       transaction_id: null,
       distance: null,
-      pickup_time: new Date('2023-10-10T09:25:03.085Z'),
-      dropoff_time: new Date('2023-10-10T11:40:03.085Z'),
+      pickup_time: null,
+      dropoff_time: null,
     },
     {
       passenger_id: 40,
@@ -5032,15 +5036,25 @@ export async function seed(knex: Knex): Promise<void> {
   ]);
 
   await knex('match_ride').del();
+  // await knex('match_ride').insert([
+  //   { match_id: 2, ride1_id: 3, ride2_id: 3, status: 'canceled' },
+  //   { match_id: 2, ride1_id: 4, ride2_id: 4, status: 'canceled' },
+  //   { match_id: 3, ride1_id: 5, ride2_id: 5, status: 'wait_2' },
+  //   { match_id: 3, ride1_id: 6, ride2_id: 6, status: 'wait_2' },
+  //   { match_id: 4, ride1_id: 7, ride2_id: 7, status: 'wait_both' },
+  //   { match_id: 4, ride1_id: 8, ride2_id: 8, status: 'wait_both' },
+  //   { match_id: 5, ride1_id: 9, ride2_id: 9, status: 'confirmed' },
+  //   { match_id: 5, ride1_id: 10, ride2_id: 10, status: 'confirmed' },
+  // ]);
   await knex('match_ride').insert([
-    { match_id: 2, ride1_id: 3, ride2_id: 3, status: 'wait_1' },
-    { match_id: 2, ride1_id: 4, ride2_id: 4, status: 'wait_1' },
-    { match_id: 3, ride1_id: 5, ride2_id: 5, status: 'wait_2' },
-    { match_id: 3, ride1_id: 6, ride2_id: 6, status: 'wait_2' },
-    { match_id: 4, ride1_id: 7, ride2_id: 7, status: 'wait_both' },
-    { match_id: 4, ride1_id: 8, ride2_id: 8, status: 'wait_both' },
-    { match_id: 5, ride1_id: 9, ride2_id: 9, status: 'confirmed' },
-    { match_id: 5, ride1_id: 10, ride2_id: 10, status: 'confirmed' },
+    { match_id: 2, ride1_id: 3, ride2_id: 3, status: 'canceled' },
+    { match_id: 3, ride1_id: 4, ride2_id: 4, status: 'canceled' },
+    { match_id: 4, ride1_id: 5, ride2_id: 5, status: 'wait_2' },
+    { match_id: 5, ride1_id: 6, ride2_id: 6, status: 'wait_2' },
+    { match_id: 6, ride1_id: 7, ride2_id: 7, status: 'wait_both' },
+    { match_id: 7, ride1_id: 8, ride2_id: 8, status: 'wait_both' },
+    { match_id: 8, ride1_id: 9, ride2_id: 9, status: 'confirmed' },
+    { match_id: 9, ride1_id: 10, ride2_id: 10, status: 'confirmed' },
   ]);
 }
 

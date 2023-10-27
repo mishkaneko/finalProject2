@@ -24,7 +24,7 @@ const AccountDetails = ({ navigation }) => {
   const role = useSelector((state) => state.auth.role)
   const [profileData, setProfileData] = useState({})
   const [selectedImage, setSelectedImage] = useState(
-    `${api_origin}/uploads/user-none.png`,
+    `${api_origin}/uploads/user-none.jpeg`,
   )
   const navigationToPasswordUpdate = () => {
     navigation.navigate('UpdatePassword')

@@ -322,8 +322,8 @@ export class UserService {
         'location6.name as segment3_end_location',
 
         'match.start_time',
-        'match.end_time'
-        // 'match_ride.status'
+        'match.end_time',
+        'match_ride.status'
       )
 
       .from('match')

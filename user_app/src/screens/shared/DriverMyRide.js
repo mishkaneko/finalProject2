@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
@@ -16,6 +17,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 const DriverMyRide = ({ navigation }) => {
   const role = useSelector((state) => state.auth.role)
   const [driverRideHistory, setDriverRideHistory] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const getBackgroundColor = () => {
     if (role == 'passenger') {
@@ -34,10 +36,12 @@ const DriverMyRide = ({ navigation }) => {
       let json = await get('/driver/ridehistory')
       console.log(json)
       setDriverRideHistory(json)
+      setIsLoading(false)
       return
     } catch (error) {
       console.log(error)
     }
+    setIsLoading(false)
   }
 
   return (
@@ -66,57 +70,66 @@ const DriverMyRide = ({ navigation }) => {
           >
             My Rides
           </Text>
-          {driverRideHistory.length > 0 ? (
-            driverRideHistory.map((ride) => {
-              const fromDate = new Date(ride.start_time)
-                .toISOString()
-                .split('T')[0]
-              const fromTime = new Date(ride.start_time)
-                .toISOString()
-                .split('T')[1]
-                .split('.')[0]
-              const toDate = new Date(ride.end_time).toISOString().split('T')[0]
-              const toTime = new Date(ride.end_time)
-                .toISOString()
-                .split('T')[1]
-                .split('.')[0]
-
-              let status
-              if (
-                ride.match_ride_status == 'wait_both' ||
-                'wait_1' ||
-                'wait_2'
-              ) {
-                status = 'CONFIRMED'
-              } else if (ride.match_ride_status == 'confirmed') {
-                status = 'CONFIRMED'
-              } else if (ride.match_ride_status == 'canceled') {
-                status = 'CANCELED'
-              }
-              return (
-                <DriverRideCard
-                  key={ride.id}
-                  fromDate={fromDate}
-                  fromTime={fromTime}
-                  status={status}
-                  fromName={ride.segment1_start_location}
-                  waypoint1Name={ride.segment1_end_location}
-                  waypoint2Name={ride.segment2_end_location || ''}
-                  toName={ride.segment3_end_location || ''}
-                  toDate={toDate}
-                  toTime={toTime}
-                />
-              )
-            })
+          {isLoading ? (
+            <ActivityIndicator size="large" />
           ) : (
-            <View tw="bg-gray-100 rounded-lg h-44 px-2 mb-2 py-2 justify-center shadow-sm">
-              <Text tw="self-center text-xl" style={styles.font}>
-                No history yet.
-              </Text>
-              <Text tw="self-center text-xl" style={styles.font}>
-                Jobs are coming soon.
-              </Text>
-            </View>
+            <>
+              {driverRideHistory.length > 0 ? (
+                driverRideHistory.map((ride) => {
+                  const fromDate = new Date(ride.start_time)
+                    .toISOString()
+                    .split('T')[0]
+                  const fromTime = new Date(ride.start_time)
+                    .toISOString()
+                    .split('T')[1]
+                    .split('.')[0]
+                  const toDate = new Date(ride.end_time)
+                    .toISOString()
+                    .split('T')[0]
+                  const toTime = new Date(ride.end_time)
+                    .toISOString()
+                    .split('T')[1]
+                    .split('.')[0]
+
+                  let status
+                  if (
+                    ride.status == 'wait_both' ||
+                    ride.status == 'wait_1' ||
+                    ride.status == 'wait_2' ||
+                    ride.status == null
+                  ) {
+                    status = 'CONFIRMED'
+                  } else if (ride.status == 'confirmed') {
+                    status = 'CONFIRMED'
+                  } else if (ride.status == 'canceled') {
+                    status = 'CANCELED'
+                  }
+                  return (
+                    <DriverRideCard
+                      key={ride.id}
+                      fromDate={fromDate}
+                      fromTime={fromTime}
+                      status={status}
+                      fromName={ride.segment1_start_location}
+                      waypoint1Name={ride.segment1_end_location}
+                      waypoint2Name={ride.segment2_end_location || ''}
+                      toName={ride.segment3_end_location || ''}
+                      toDate={toDate}
+                      toTime={toTime}
+                    />
+                  )
+                })
+              ) : (
+                <View tw="bg-gray-100 rounded-lg h-44 px-2 mb-2 py-2 justify-center shadow-sm">
+                  <Text tw="self-center text-xl" style={styles.font}>
+                    No history yet.
+                  </Text>
+                  <Text tw="self-center text-xl" style={styles.font}>
+                    Jobs are coming soon.
+                  </Text>
+                </View>
+              )}
+            </>
           )}
         </ScrollView>
       </View>

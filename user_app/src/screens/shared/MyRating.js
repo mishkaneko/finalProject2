@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import { StarRatingDisplay } from 'react-native-star-rating-widget'
 import RatingCard from '../../components/shared/screen-components/RatingCard'
@@ -18,6 +19,7 @@ const MyRating = ({ navigation }) => {
   const [ratings, setRatings] = useState([])
   // const ratingScore = 3.3
   const [overallRating, setOverallRating] = useState(5)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getBackgroundColor = () => {
     if (role == 'passenger') {
@@ -40,9 +42,11 @@ const MyRating = ({ navigation }) => {
       // console.log('getRatingRN', avgScore)
       setRatings(commentsFromServer)
       setOverallRating(avgScore)
+      setIsLoading(false)
     } catch (error) {
       console.log(error)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -79,43 +83,50 @@ const MyRating = ({ navigation }) => {
         >
           Overall Rating
         </Text>
-        {ratings.length > 0 ? (
-          <>
-            <Text
-              tw={`${
-                role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-              } self-center text-8xl`}
-              style={styles.font}
-            >
-              {overallRating}
-            </Text>
-            <StarRatingDisplay rating={overallRating} tw="mb-6  self-center" />
-          </>
+        {isLoading ? (
+          <ActivityIndicator size="large" />
         ) : (
           <>
-            <Text
-              tw={`${
-                role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-              } self-center text-8xl`}
-              style={styles.font}
-            >
-              5
-            </Text>
-            <StarRatingDisplay rating={5} tw="mb-6  self-center" />
-            <View tw="bg-gray-100  rounded-lg h-28 px-4 mb-3 shadow-sm justify-center items-center">
-              <Text
-                style={styles.font}
-                tw={`${
-                  role === 'passenger' ? `text-indigo-950` : `text-teal-950`
-                } `}
-              >
-                No Rating from others yet.
-              </Text>
-            </View>
-          </>
-        )}
+            {ratings.length > 0 ? (
+              <>
+                <Text
+                  tw={`${
+                    role === 'passenger' ? `text-indigo-950` : `text-teal-950`
+                  } self-center text-8xl`}
+                  style={styles.font}
+                >
+                  {overallRating}
+                </Text>
+                <StarRatingDisplay
+                  rating={overallRating}
+                  tw="mb-6  self-center"
+                />
+              </>
+            ) : (
+              <>
+                <Text
+                  tw={`${
+                    role === 'passenger' ? `text-indigo-950` : `text-teal-950`
+                  } self-center text-8xl`}
+                  style={styles.font}
+                >
+                  5
+                </Text>
+                <StarRatingDisplay rating={5} tw="mb-6  self-center" />
+                <View tw="bg-gray-100  rounded-lg h-28 px-4 mb-3 shadow-sm justify-center items-center">
+                  <Text
+                    style={styles.font}
+                    tw={`${
+                      role === 'passenger' ? `text-indigo-950` : `text-teal-950`
+                    } `}
+                  >
+                    No Rating from others yet.
+                  </Text>
+                </View>
+              </>
+            )}
 
-        {/* <RatingCard
+            {/* <RatingCard
           name="James"
           date="15 Oct 2023"
           score="2.5"
@@ -127,15 +138,17 @@ const MyRating = ({ navigation }) => {
           tempore, quae, dolores placeat ea ducimus reprehenderit eum, molestiae
           vel. Veritatis"
         /> */}
-        {ratings.length > 0 &&
-          ratings.map((rating) => (
-            <RatingCard
-              key={rating.id}
-              from_name={rating.from_name}
-              score={rating.score}
-              comment={rating.comment}
-            />
-          ))}
+            {ratings.length > 0 &&
+              ratings.map((rating) => (
+                <RatingCard
+                  key={rating.id}
+                  from_name={rating.from_name}
+                  score={rating.score}
+                  comment={rating.comment}
+                />
+              ))}
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   )

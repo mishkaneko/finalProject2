@@ -1,7 +1,8 @@
 import express from 'express';
 const router = express.Router();
 import { addRide } from './passenger.service';
-import { getSocket, setHomeStatus, closeAllConnections } from './socket';
+// import { getSocket, setHomeStatus, closeAllConnections } from './socket';
+import { getSocket, closeAllConnections } from './socket';
 
 router.get('/clean', (req, res) => {
   closeAllConnections();
